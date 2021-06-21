@@ -11,6 +11,11 @@ requirements:
   build:
     - python
     - setuptools
-
+    - snakemake-minimal 6.3.0*
+    - biopython 1.78*
+    - ruamel.yaml 0.16.12*
   run:
     - python
+    - snakemake-minimal 6.3.0*
+    - biopython 1.78*
+    - ruamel.yaml 0.16.12*

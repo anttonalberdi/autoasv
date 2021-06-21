@@ -26,7 +26,6 @@ args = parser.parse_args()
 input=args.input
 workdir=args.workdir
 
-
 def main():
     print(input)
     print(workdir)

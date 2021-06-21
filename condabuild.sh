@@ -37,15 +37,13 @@ EOL
 
 # Create environment
 conda env create --file autoasv_environment.yaml python=3.8.10
-conda remove autoasv -n autoasv_env_1
-conda install autoasv -n autoasv_env_1 -c anttonalberdi
+
+#conda remove autoasv -n autoasv_env_1
+#conda install autoasv -n autoasv_env_1 -c anttonalberdi
 
 source activate autoasv_env_1
 
 autoasv
-python3 -m autoasv
-
-echo $PATH
 
 conda deactivate
 conda env remove -n autoasv_env_1
