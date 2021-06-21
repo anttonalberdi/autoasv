@@ -1,1 +1,1 @@
-__version__ = "1.0"
+version = attr: package_name.__version__
