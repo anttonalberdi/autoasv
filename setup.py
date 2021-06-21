@@ -11,5 +11,4 @@ setup(name='autoasv',
     entry_points = {
         'console_scripts': ['mybinary=autoasv.autoasv:cli'],
     },
-    name='autoasv',
     zip_safe=False)
