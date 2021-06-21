@@ -8,7 +8,7 @@ mkdir autoasv_builds
 conda-build autoasv -c conda-forge --output-folder /Users/anttonalberdi/github/autoasv_builds
 
 #Convert build to different platforms
-conda convert --platform all /Users/anttonalberdi/github/autoasv_builds/osx-64/autoasv-1.0-py37r40_0.tar.bz2 -o /Users/anttonalberdi/github/autoasv_builds
+conda convert --platform all /Users/anttonalberdi/github/autoasv_builds/osx-64/autoasv-1.0-py38_0.tar.bz2 -o /Users/anttonalberdi/github/autoasv_builds
 
 ######
 # Upload conda package
@@ -18,7 +18,7 @@ conda convert --platform all /Users/anttonalberdi/github/autoasv_builds/osx-64/a
 anaconda login
 
 #Upload package (all versions)
-anaconda upload /Users/anttonalberdi/github/autoasv_builds/*/autoasv-1.0-py37r40_0.tar.bz2 --force
+anaconda upload /Users/anttonalberdi/github/autoasv_builds/*/autoasv-1.0-py38_0.tar.bz2 --force
 
 ######
 # Create conda environment
