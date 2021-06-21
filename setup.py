@@ -14,7 +14,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(
-    name="autoASV",
+    name="autoasv",
     version="1.0",
     author="Antton Alberdi",
     author_email="anttonalberdi@gmail.com",
