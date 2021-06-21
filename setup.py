@@ -30,7 +30,7 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    package_dir={"": "src"},
-    packages=find_packages(where="src"),
+    package_dir={"": "autoasv"},
+    packages=find_packages(where="autoasv"),
     python_requires=">=3.8",
 )
