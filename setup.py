@@ -9,6 +9,6 @@ setup(name='autoasv',
     license='MIT',
     packages=['autoasv'],
     entry_points = {
-        'console_scripts': ['autoasv=autoasv.autoasv:cli'],
+        'console_scripts': ['autoasv=autoasv.autoasv:main'],
     },
     zip_safe=False)
