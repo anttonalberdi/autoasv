@@ -18,7 +18,7 @@ setup(
     version="1.0",
     author="Antton Alberdi",
     author_email="anttonalberdi@gmail.com",
-    description="Bacterial AMplicon SEquencing pipeline",
+    description="Automatic amplicon sequencing data processing pipeline",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/anttonalberdi/autoasv",
@@ -30,7 +30,5 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    package_dir={"": "autoasv"},
-    packages=find_packages(where="autoasv"),
     python_requires=">=3.8",
 )
