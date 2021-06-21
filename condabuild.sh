@@ -32,6 +32,10 @@ channels:
   - bioconda
   - anttonalberdi
 dependencies:
+  - bioconda::snakemake-minimal=6.3.0
+  - conda-forge::biopython=1.78
+  - conda-forge::ruamel.yaml=0.16.12
+  - bioconda::cutadapt=2.10
   - anttonalberdi::autoasv=1.0
 EOL
 
@@ -44,7 +48,7 @@ conda env create --file autoasv_environment.yaml python=3.8.10
 source activate autoasv_env_1
 
 autoasv
-autoasv -i hello -w world -f this -r is -x a -a test
+autoasv -i hello -d world
 
 conda deactivate
 conda env remove -n autoasv_env_1
