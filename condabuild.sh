@@ -44,6 +44,7 @@ conda env create --file autoasv_environment.yaml python=3.8.10
 source activate autoasv_env_1
 
 autoasv
+autoasv -i hello -w world -f this -r is -x a -a test
 
 conda deactivate
 conda env remove -n autoasv_env_1
