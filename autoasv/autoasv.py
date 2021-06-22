@@ -14,7 +14,7 @@ from Bio import SeqIO
 import numpy as np
 import statistics
 
-#import autoasv
+import autoasv
 from readinput import dir_path
 from log import initiallog,settingslog
 
@@ -140,15 +140,20 @@ if copythreshold is None:
     copythreshold='0.0001'
 
 #######
-# Print settings on screen
+# Log
 #######
 
+#Pipeline presentation log
 initiallog()
+
+#Settings log
 settingslog(input,projectdir,paramsfile,logfile,taxdb,primer_for,primer_rev,ampliconlength,minampliconlength,maxampliconlength,maxerrors,minoverlap,trim_for,trim_rev,maxreads,chimerafold,copythreshold,taxfilter,adaptor_for,adaptor_rev)
 
 #######
 # Read input file
 #######
+
+inputdata()
 
 #def main():
 #    print(input)
