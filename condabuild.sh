@@ -27,7 +27,7 @@ anaconda upload /Users/anttonalberdi/github/autoasv_builds/*/autoasv-1.0-py37_0.
 
 # Create environment yaml
 cat > autoasv_environment.yaml <<EOL
-name: autoasv_env_2
+name: autoasv_env_1
 channels:
   - conda-forge
   - bioconda
@@ -36,7 +36,7 @@ dependencies:
   - bioconda::snakemake-minimal=6.3.0
   - conda-forge::biopython=1.78
   - conda-forge::ruamel.yaml=0.16.12
-  - bioconda::cutadapt=2.10
+  - bioconda::cutadapt=3.4
   - anttonalberdi::autoasv=1.0
 EOL
 
@@ -47,11 +47,11 @@ conda env create --file autoasv_environment.yaml python=3.8.10
 # Test autoasv
 ######
 
-source activate autoasv_env_2
+source activate autoasv_env_1
 #conda install autoasv -n autoasv_env_2 -c anttonalberdi
 
 autoasv
-autoasv -i hello -d world -f this -r is -a test -x .
+autoasv -i /Users/anttonalberdi/Arachnida.fasta -d /Users/anttonalberdi/ -f asd -r is -a 400 -x /Users/anttonalberdi/Arachnida.fasta
 
 ######
 # Deactivate and remove environment
@@ -64,6 +64,7 @@ conda env remove -n autoasv_env_1
 ######
 # Local test
 ######
-source activate autoasv_env_2
+source activate autoasv_env_1
 python3 /Users/anttonalberdi/github/autoasv/autoasv/autoasv.py
-python3 /Users/anttonalberdi/github/autoasv/autoasv/autoasv.py -i hello -d /Users/anttonalberdi/ -f asd -r is -a test -x . --adaptorforward ad
+python3 /Users/anttonalberdi/github/autoasv/autoasv/autoasv.py -i /Users/anttonalberdi/Downloads/input.txt -d /Users/anttonalberdi/autoasvtest -f asd -r is -a 400 -x /Users/anttonalberdi/Arachnida.fasta --adaptorforward ad
+python3 /Users/anttonalberdi/github/autoasv/autoasv/autoasv.py -i /Users/anttonalberdi/Downloads/input_inc.txt -d /Users/anttonalberdi/ -f asd -r is -a 400 -x /Users/anttonalberdi/Arachnida.fasta --adaptorforward ad

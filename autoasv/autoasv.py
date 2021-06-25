@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import os
+import sys
 from sys import exit
 from glob import glob
 import argparse
@@ -14,9 +15,16 @@ from Bio import SeqIO
 import numpy as np
 import statistics
 
-import autoasv
-from readinput import dir_path
-from log import initiallog,settingslog
+#for local
+#from input import dir_path,inputdata,testrawfiles,softlinks
+#from output import outputfiles
+#from log import initiallog,settingslog,inputdatalog
+
+#for conda
+#mport autoasv
+#from autoasv.input import dir_path,inputdata,testrawfiles,softlinks
+#from autoasv.output import outputfiles
+#from autoasv.log import initiallog,settingslog,inputdatalog
 
 #######
 # Get and process arguments
@@ -153,7 +161,32 @@ settingslog(input,projectdir,paramsfile,logfile,taxdb,primer_for,primer_rev,ampl
 # Read input file
 #######
 
-inputdata()
+#Load input data table
+inputtable=inputdata(input)
+
+#Declare lists from input data
+samplelist=inputtable[:,0]
+runlist=inputtable[:,1]
+forwardlist=inputtable[:,2]
+reverselist=inputtable[:,3]
+
+#Input data log
+inputdatalog(samplelist,runlist,forwardlist,reverselist)
+
+#Check if input raw files exist
+testrawfiles(forwardlist,reverselist)
+
+#Create input directory and soft links
+softlinks(samplelist,runlist,forwardlist,reverselist,projectdir)
 
 #def main():
 #    print(input)
+
+
+outputfiles=",".join(outputfiles(samplelist,runlist,forwardlist,reverselist,projectdir))
+
+#######
+# Run Snakemake workflow
+#######
+snk_Cmd = 'snakemake -s autoasv/Snakefile -k '+outputfiles+' --cores '+str(threads)+''
+subprocess.Popen(snk_Cmd, shell=True).wait()

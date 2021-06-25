@@ -15,6 +15,9 @@ def initiallog():
     print("#######################################################################\n")
 
 def settingslog(input,projectdir,paramsfile,logfile,taxdb,primer_for,primer_rev,ampliconlength,minampliconlength,maxampliconlength,maxerrors,minoverlap,trim_for,trim_rev,maxreads,chimerafold,copythreshold,taxfilter,adaptor_for,adaptor_rev):
+    print("\n########################")
+    print("####   PARAMETERS   ####")
+    print("########################")
     print("autoASV is running with the following parameters:\n")
     print("PATHS")
     print("\tInput file: "+str(input))
@@ -41,4 +44,12 @@ def settingslog(input,projectdir,paramsfile,logfile,taxdb,primer_for,primer_rev,
     print("\tReverse adaptor sequence: "+str(adaptor_rev)+"\n")
     print("If you want to learn more about these parameters visit:")
     print("\thttps://github.com/anttonalberdi/autoasv\n")
-    print("##########################################")
+
+def inputdatalog(samplelist,runlist,forwardlist,reverselist):
+    print("\n########################")
+    print("####   INPUT DATA   ####")
+    print("########################")
+    print("\nautoASV will run the following samples:")
+    print("\tSAMPLE\tRUN\tFORWARD FILE\tREVERSE FILE")
+    for (sample,run,forward,reverse) in zip(samplelist,runlist,forwardlist,reverselist):
+        print("\t"+str(sample)+"\t"+str(run)+"\t"+str(forward)+"\t"+str(reverse))
