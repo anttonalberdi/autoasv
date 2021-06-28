@@ -16,9 +16,9 @@ import numpy as np
 import statistics
 
 #for local
-#from input import dir_path,inputdata,testrawfiles,softlinks
-#from output import outputfiles
-#from log import initiallog,settingslog,inputdatalog
+from input import dir_path,inputdata,testrawfiles,softlinks
+from output import outputfiles
+from log import initiallog,settingslog,inputdatalog
 
 #for conda
 #mport autoasv
@@ -188,5 +188,19 @@ outputfiles=",".join(outputfiles(samplelist,runlist,forwardlist,reverselist,proj
 #######
 # Run Snakemake workflow
 #######
-snk_Cmd = 'snakemake -s autoasv/Snakefile -k '+outputfiles+' --cores '+str(threads)+''
+snk_Cmd = """
+#Search for snakefile in conda environment
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        snakefile="$CONDA_PREFIX/lib/python3.7/site-packages/autoasv/snakefile.py"
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+        snakefile="$CONDA_PREFIX/lib/python3.7/site-packages/autoasv/snakefile.py"
+elif [[ "$OSTYPE" == "cygwin" ]]; then
+        snakefile="$CONDA_PREFIX/lib/python3.7/site-packages/autoasv/snakefile.py"
+elif [[ "$OSTYPE" == "msys"* ]]; then
+        snakefile="%CONDA_PREFIX%/lib/python3.7/site-packages/autoasv/snakefile.py"
+elif [[ "$OSTYPE" == "freebsd"* ]]; then
+        snakefile="$CONDA_PREFIX/lib/python3.7/site-packages/autoasv/snakefile.py"
+fi
+snakemake -s ${snakefile} -k '+outputfiles+' --cores '+str(threads)+''
+"""
 subprocess.Popen(snk_Cmd, shell=True).wait()
