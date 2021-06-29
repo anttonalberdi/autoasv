@@ -148,6 +148,8 @@ if chimerafold is None:
 if copythreshold is None:
     copythreshold='0.0001'
 
+autoasvpath=os.environ['CONDA_PREFIX']+"/lib/python3.7/site-packages/autoasv/"
+
 #######
 # Log
 #######
@@ -190,7 +192,7 @@ outputfiles=" ".join(outputfiles(samplelist,runlist,forwardlist,reverselist,proj
 # Create snakemake config file
 #######
 
-createconfig(paramsfile,threads,logfile,primer_for,primer_rev)
+createconfig(input,autoasvpath,projectdir,paramsfile,threads,logfile,primer_for,primer_rev)
 
 #######
 # Run Snakemake workflow
@@ -207,4 +209,4 @@ else:
     print("It was not possible to identify OS")
 
 snk_Cmd = 'snakemake -s '+snakefile+' --configfile '+paramsfile+' --cores '+str(threads)+' '+outputfiles+''
-subprocess.Popen(snk_Cmd, shell=True).wait()
+subprocess.Popen(snk_Cmd, shell=True, executable="/bin/bash").wait()

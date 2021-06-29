@@ -71,9 +71,12 @@ def softlinks(samplelist,runlist,forwardlist,reverselist,projectdir):
             os.symlink(reverse, os.path.join(os.path.abspath(projectdir),"0-Rawdata",run,samplename))
 
 #Create and append information to the parameters file
-def createconfig(paramsfile,threads,logfile,primer_for,primer_rev):
+def createconfig(input,autoasvpath,projectdir,paramsfile,threads,logfile,primer_for,primer_rev):
     f = open(str(paramsfile), "a")
     f.write("#autoASV core paths\n")
+    f.write("autoasvpath:\n "+str(autoasvpath)+"\n")
+    f.write("projectdir:\n "+str(projectdir)+"\n")
+    f.write("inputfile:\n "+str(input)+"\n")
     f.write("paramsfile:\n "+str(paramsfile)+"\n")
     f.write("logfile:\n "+str(logfile)+"\n")
     f.write("threads:\n "+str(threads)+"\n")
