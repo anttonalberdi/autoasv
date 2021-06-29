@@ -66,5 +66,5 @@ conda env remove -n autoasv_env_1
 ######
 source activate autoasv_env_1
 python3 /Users/anttonalberdi/github/autoasv/autoasv/autoasv.py
-python3 /Users/anttonalberdi/github/autoasv/autoasv/autoasv.py -i /Users/anttonalberdi/Downloads/input.txt -d /Users/anttonalberdi/autoasvtest -f asd -r is -a 400 -x /Users/anttonalberdi/Arachnida.fasta --adaptorforward ad
-python3 /Users/anttonalberdi/github/autoasv/autoasv/autoasv.py -i /Users/anttonalberdi/Downloads/input_inc.txt -d /Users/anttonalberdi/ -f asd -r is -a 400 -x /Users/anttonalberdi/Arachnida.fasta --adaptorforward ad
+python3 /Users/anttonalberdi/github/autoasv/autoasv/autoasv.py -i /Users/anttonalberdi/autoasvtest/input.txt -d /Users/anttonalberdi/autoasvtest -f CTANGGGNNGCANCAG -r GACTACNNGGGTATCTAAT -a 400 -x /Users/anttonalberdi/Arachnida.fasta --adaptorforward ad
+python3 /Users/anttonalberdi/github/autoasv/autoasv/autoasv.py -i /Users/anttonalberdi/autoasvtest/input_inc.txt -d /Users/anttonalberdi/ -f asd -r is -a 400 -x /Users/anttonalberdi/Arachnida.fasta --adaptorforward ad

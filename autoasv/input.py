@@ -69,3 +69,13 @@ def softlinks(samplelist,runlist,forwardlist,reverselist,projectdir):
         samplename=sample+'_2.fq.gz'
         if not os.path.isfile(os.path.join(os.path.abspath(projectdir),"0-Rawdata",run,samplename)):
             os.symlink(reverse, os.path.join(os.path.abspath(projectdir),"0-Rawdata",run,samplename))
+
+#Create and append information to the parameters file
+def createconfig(paramsfile,threads,logfile,primer_for,primer_rev):
+    f = open(str(paramsfile), "a")
+    f.write("#autoASV core paths\n")
+    f.write("paramsfile:\n "+str(paramsfile)+"\n")
+    f.write("logfile:\n "+str(logfile)+"\n")
+    f.write("threads:\n "+str(threads)+"\n")
+    f.write("primer_for:\n "+str(primer_for)+"\n")
+    f.write("primer_rev:\n "+str(primer_rev)+"\n")

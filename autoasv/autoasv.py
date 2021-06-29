@@ -14,15 +14,16 @@ from shutil import which
 from Bio import SeqIO
 import numpy as np
 import statistics
+import platform
 
 #for local
-from input import dir_path,inputdata,testrawfiles,softlinks
+from input import dir_path,inputdata,testrawfiles,softlinks,createconfig
 from output import outputfiles
 from log import initiallog,settingslog,inputdatalog
 
 #for conda
 #mport autoasv
-#from autoasv.input import dir_path,inputdata,testrawfiles,softlinks
+#from autoasv.input import dir_path,inputdata,testrawfiles,softlinks,createconfig
 #from autoasv.output import outputfiles
 #from autoasv.log import initiallog,settingslog,inputdatalog
 
@@ -183,24 +184,27 @@ softlinks(samplelist,runlist,forwardlist,reverselist,projectdir)
 #    print(input)
 
 
-outputfiles=",".join(outputfiles(samplelist,runlist,forwardlist,reverselist,projectdir))
+outputfiles=" ".join(outputfiles(samplelist,runlist,forwardlist,reverselist,projectdir))
+
+#######
+# Create snakemake config file
+#######
+
+createconfig(paramsfile,threads,logfile,primer_for,primer_rev)
 
 #######
 # Run Snakemake workflow
 #######
-snk_Cmd = """
-#Search for snakefile in conda environment
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-        snakefile="$CONDA_PREFIX/lib/python3.7/site-packages/autoasv/snakefile.py"
-elif [[ "$OSTYPE" == "darwin"* ]]; then
-        snakefile="$CONDA_PREFIX/lib/python3.7/site-packages/autoasv/snakefile.py"
-elif [[ "$OSTYPE" == "cygwin" ]]; then
-        snakefile="$CONDA_PREFIX/lib/python3.7/site-packages/autoasv/snakefile.py"
-elif [[ "$OSTYPE" == "msys"* ]]; then
-        snakefile="%CONDA_PREFIX%/lib/python3.7/site-packages/autoasv/snakefile.py"
-elif [[ "$OSTYPE" == "freebsd"* ]]; then
-        snakefile="$CONDA_PREFIX/lib/python3.7/site-packages/autoasv/snakefile.py"
-fi
-snakemake -s ${snakefile} -k '+outputfiles+' --cores '+str(threads)+''
-"""
+
+#Identify snakefile path
+if platform.system() == "linux" or platform.system() == "Linux2":
+    snakefile=os.environ['CONDA_PREFIX']+"/lib/python3.7/site-packages/autoasv/snakefile.py"
+elif platform.system() == "Darwin":
+    snakefile=os.environ['CONDA_PREFIX']+"/lib/python3.7/site-packages/autoasv/snakefile.py"
+elif platform.system() == "Windows" or platform.system() == 'cygwin':
+    snakefile=os.environ['CONDA_PREFIX']+"/lib/python3.7/site-packages/autoasv/snakefile.py"
+else:
+    print("It was not possible to identify OS")
+
+snk_Cmd = 'snakemake -s '+snakefile+' --configfile '+paramsfile+' --cores '+str(threads)+' '+outputfiles+''
 subprocess.Popen(snk_Cmd, shell=True).wait()
